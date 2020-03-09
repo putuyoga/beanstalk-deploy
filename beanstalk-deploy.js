@@ -126,8 +126,7 @@ function expect(status, result) {
 
 //Uploads zip file, creates new version and deploys it
 function deployNewVersion(application, environmentName, versionLabel, file) {
-
-    let s3Key = `/${application}/${versionLabel}.zip`;
+    let s3Key = `/${versionLabel}.zip`;
     let bucket, deployStart, fileBuffer;
 
     readFile(file).then(result => {
@@ -268,7 +267,7 @@ function main() {
             } 
         } 
     }).catch(err => {
-        console.error(`Deployment failed: ${err}`);
+        console.error(`Deployment failed: ${err.message}`);
         process.exit(2);
     });
 }
